@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7a792673978ba834ea6df7d153fc7921
+guid: e7c04677871241f4696d9bc7de5a973e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8267763762133839511
-    second: Gemini_Generated_Image_v2rrn4v2rrn4v2rr 1_0
+      213: -528204828700983729
+    second: descarga (2)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gemini_Generated_Image_v2rrn4v2rrn4v2rr 1_0
+      name: descarga (2)_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 0
-        width: 505
-        height: 528
+        x: 61
+        y: 83
+        width: 410
+        height: 411
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 79ea5d0565ffcb270800000000000000
-      internalID: 8267763762133839511
+      spriteID: f4eb1a0c1807ba8f0800000000000000
+      internalID: -528204828700983729
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Gemini_Generated_Image_v2rrn4v2rrn4v2rr 1_0: 8267763762133839511
+      descarga (2)_0: -528204828700983729
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

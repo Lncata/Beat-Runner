@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5a17e314123947f4c9c15a2e37cd6879
+guid: 5d29a962076676b44bcc013bbc2a2eab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6529616950979734185
-    second: isla_tierra_0
+      213: -1891107646604127584
+    second: descarga (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: isla_tierra_0
+      name: descarga (1)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2048
-        height: 2048
+        x: 61
+        y: 83
+        width: 410
+        height: 413
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 755db7d7af32265a0800000000000000
-      internalID: -6529616950979734185
+      spriteID: 0a2d22c6d9f61c5e0800000000000000
+      internalID: -1891107646604127584
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      isla_tierra_0: -6529616950979734185
+      descarga (1)_0: -1891107646604127584
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
