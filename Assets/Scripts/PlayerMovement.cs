@@ -4,7 +4,10 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
-    public float jumpForce = 50f;
+    public float jumpForce = 14f;
+
+    public float fallMultiplier = 4f;
+    public float riseMultiplier = 2.5f;
 
     private Rigidbody2D rb;
     private bool canJump = true;
@@ -26,6 +29,15 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
+
+        if (rb.linearVelocity.y < 0)
+        {
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        }
+        else if (rb.linearVelocity.y > 0)
+        {
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (riseMultiplier - 1) * Time.fixedDeltaTime;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,9 +46,10 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = true;
         }
+
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);      
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

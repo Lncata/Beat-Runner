@@ -184,6 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 5
   jumpForce: 7
+  fallMultiplier: 4
+  riseMultiplier: 2.5
 --- !u!61 &492053895
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -245,7 +247,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
