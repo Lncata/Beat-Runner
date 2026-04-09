@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementInferno : MonoBehaviour
 {
     public float speed = 5f;
     public float jumpForce = 14f;
