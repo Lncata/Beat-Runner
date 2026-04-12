@@ -1283,7 +1283,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.015021503, y: -0.009258628}
+  m_Offset: {x: -0.0055288225, y: -0.03387618}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1293,7 +1293,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.0320958, y: 3.7643178}
+  m_Size: {x: 0.99099517, y: 3.7150826}
   m_EdgeRadius: 0
 --- !u!50 &492053896
 Rigidbody2D:
@@ -3521,7 +3521,7 @@ Transform:
   m_GameObject: {fileID: 1436082880}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.64, y: 6.89, z: 0}
+  m_LocalPosition: {x: -28.26, y: 5.93, z: 0}
   m_LocalScale: {x: 3, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4648,7 +4648,7 @@ GameObject:
   - component: {fileID: 1856355369}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4721,7 +4721,7 @@ Transform:
   m_GameObject: {fileID: 1856355364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 1.29, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4785,7 +4785,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 492053898}
   offsetX: 2
-  smoothSpeed: 5
+  smoothSpeedX: 5
+  smoothSpeedY: 4
+  verticalThreshold: 3
+  verticalOffset: 1.5
 --- !u!1 &1864241575
 GameObject:
   m_ObjectHideFlags: 0
