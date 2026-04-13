@@ -20,12 +20,22 @@ public class SpeedZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerMovement player = other.GetComponent<PlayerMovement>();
+        Debug.Log("Algo entró al trigger: " + other.name);
+
+        PlayerMovementInferno player = other.GetComponent<PlayerMovementInferno>();
 
         if (player == null)
         {
+            player = other.GetComponentInParent<PlayerMovementInferno>();
+        }
+
+        if (player == null)
+        {
+            Debug.Log("No encontré PlayerMovement");
             return;
         }
+
+        Debug.Log("SpeedZone activada");
 
         player.speed = newPlayerSpeed;
 
