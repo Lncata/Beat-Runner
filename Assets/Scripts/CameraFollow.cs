@@ -16,7 +16,22 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-        baseY = transform.position.y;
+        if (target == null) return;
+
+        float startY = transform.position.y;
+
+        if (target.position.y > startY + verticalThreshold)
+        {
+            startY = target.position.y - verticalOffset;
+        }
+
+        transform.position = new Vector3(
+            target.position.x + offsetX,
+            startY,
+            transform.position.z
+        );
+
+        baseY = startY;
     }
 
     void LateUpdate()
