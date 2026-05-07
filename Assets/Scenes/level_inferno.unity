@@ -7269,7 +7269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908d215449337d94f9c4c2c009287809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestStartPosition
-  testSpawn: {fileID: 0}
+  testSpawn: {fileID: 344595086}
 --- !u!1 &519287818
 GameObject:
   m_ObjectHideFlags: 0
