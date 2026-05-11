@@ -23,6 +23,9 @@ public class PlayerFormSwitcher : MonoBehaviour
     public float normalRiseMultiplier = 2.5f;
     public float catRiseMultiplier = 2.2f;
 
+    public Vector3 normalScale = new Vector3(0.8461f, 0.8829f, 1f);
+    public Vector3 catScale = new Vector3(2.2f, 2.2f, 1f);  
+
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private BoxCollider2D boxCollider;
@@ -43,6 +46,8 @@ public class PlayerFormSwitcher : MonoBehaviour
         if (isCat) return;
 
         isCat = true;
+
+        transform.localScale = catScale;
 
         if (spriteRenderer != null && catSprite != null)
         {
@@ -73,6 +78,8 @@ public class PlayerFormSwitcher : MonoBehaviour
         if (!isCat) return;
 
         isCat = false;
+
+        transform.localScale = normalScale;
 
         if (spriteRenderer != null && normalSprite != null)
         {
