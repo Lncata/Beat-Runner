@@ -16,7 +16,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - obstacles
   - 
   - 
   - 
@@ -40,6 +40,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 431286215
+    locked: 0
+  - name: Ground
+    uniqueID: 1357988031
+    locked: 0
+  - name: obstacles
+    uniqueID: 3173006065
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
