@@ -23,6 +23,10 @@ public class PlayerFormSwitcher : MonoBehaviour
     public float normalRiseMultiplier = 2.5f;
     public float catRiseMultiplier = 2.2f;
 
+    public float catCameraSize = 4f;
+
+    private CameraZoomController cameraZoom;
+
     public Vector3 normalScale = new Vector3(0.8461f, 0.8829f, 1f);
     public Vector3 catScale = new Vector3(2.2f, 2.2f, 1f);  
 
@@ -35,10 +39,15 @@ public class PlayerFormSwitcher : MonoBehaviour
 
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        movement = GetComponent<PlayerMovementInferno>();
+    spriteRenderer = GetComponent<SpriteRenderer>();
+    animator = GetComponent<Animator>();
+    boxCollider = GetComponent<BoxCollider2D>();
+    movement = GetComponent<PlayerMovementInferno>();
+
+    if (Camera.main != null)
+    {
+        cameraZoom = Camera.main.GetComponent<CameraZoomController>();
+    }
     }
 
     public void TransformToCat()
@@ -48,6 +57,11 @@ public class PlayerFormSwitcher : MonoBehaviour
         isCat = true;
 
         transform.localScale = catScale;
+
+        if (cameraZoom != null)
+        {
+            cameraZoom.SetZoom(catCameraSize);
+        }
 
         if (spriteRenderer != null && catSprite != null)
         {
@@ -80,6 +94,11 @@ public class PlayerFormSwitcher : MonoBehaviour
         isCat = false;
 
         transform.localScale = normalScale;
+
+        if (cameraZoom != null)
+        {
+            cameraZoom.ResetZoom();
+        }
 
         if (spriteRenderer != null && normalSprite != null)
         {
