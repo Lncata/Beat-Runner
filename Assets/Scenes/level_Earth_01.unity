@@ -5929,6 +5929,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b138790fccd6844a7d220a913440ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementEarth
+  speed: 6
+  jumpForce: 14
+  fallMultiplier: 4
+  riseMultiplier: 2.5
 --- !u!1 &496296411
 GameObject:
   m_ObjectHideFlags: 0
