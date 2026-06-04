@@ -8,5 +8,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/level_Earth.unity
+    guid: c8095410d4f5aa3478a43ffa5bee86c3
+  - enabled: 1
+    path: Assets/Scenes/level_inferno.unity
+    guid: 8d87d6e519f39d34ba619b600c3808dc
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2e23809da87c9fa48ab6a60cfcac24fd
+  - enabled: 1
+    path: Assets/RouletteScene.unity
+    guid: dc8e48cfa1b54ca4fb601eabc1c4858c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
