@@ -10,6 +10,10 @@ public class MovingSpikeTrap : MonoBehaviour
     public float shootSpeed = 12f;
     public float returnSpeed = 6f;
 
+    [Header("Opciones")]
+    public bool returnAfterShoot = true;
+    public bool shootOnlyOnce = true;
+
     [Header("Tiempos")]
     public float waitBeforeShoot = 0.4f;
     public float waitBeforeReturn = 0.25f;
@@ -34,7 +38,8 @@ public class MovingSpikeTrap : MonoBehaviour
         Shooting,
         StayingOut,
         Returning,
-        Cooldown
+        Cooldown,
+        Finished
     }
 
     private void Start()
@@ -47,6 +52,10 @@ public class MovingSpikeTrap : MonoBehaviour
         if (playerObject != null)
         {
             player = playerObject.transform;
+        }
+        else
+        {
+            Debug.LogWarning("MovingSpikeTrap: No se encontró ningún objeto con tag Player.");
         }
 
         currentState = State.Waiting;
@@ -92,7 +101,22 @@ public class MovingSpikeTrap : MonoBehaviour
 
                 if (timer <= 0f)
                 {
-                    currentState = State.Returning;
+                    if (returnAfterShoot)
+                    {
+                        currentState = State.Returning;
+                    }
+                    else
+                    {
+                        if (shootOnlyOnce)
+                        {
+                            currentState = State.Finished;
+                        }
+                        else
+                        {
+                            timer = cooldown;
+                            currentState = State.Cooldown;
+                        }
+                    }
                 }
                 break;
 
@@ -105,8 +129,15 @@ public class MovingSpikeTrap : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, startPosition) < 0.01f)
                 {
-                    timer = cooldown;
-                    currentState = State.Cooldown;
+                    if (shootOnlyOnce)
+                    {
+                        currentState = State.Finished;
+                    }
+                    else
+                    {
+                        timer = cooldown;
+                        currentState = State.Cooldown;
+                    }
                 }
                 break;
 
@@ -117,6 +148,10 @@ public class MovingSpikeTrap : MonoBehaviour
                 {
                     currentState = State.Waiting;
                 }
+                break;
+
+            case State.Finished:
+                // Ya disparó una vez y no vuelve a activarse.
                 break;
         }
     }
