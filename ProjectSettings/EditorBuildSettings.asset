@@ -20,5 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/RouletteScene.unity
     guid: dc8e48cfa1b54ca4fb601eabc1c4858c
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2e23809da87c9fa48ab6a60cfcac24fd
+  - enabled: 1
+    path: Assets/Scenes/level_inferno.unity
+    guid: 8d87d6e519f39d34ba619b600c3808dc
+  - enabled: 1
+    path: Assets/Scenes/level_base2.unity
+    guid: e332911447a7c4944b75528e319ed20e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
