@@ -10,18 +10,34 @@ public class PlayerMovementInferno : MonoBehaviour
     public float riseMultiplier = 2.5f;
 
     private Rigidbody2D rb;
-    private bool canJump = true;
+    private SpriteRenderer spriteRenderer;
 
-    void Start()
+    private bool canJump = true;
+    private bool gravityInverted = false;
+
+    private float normalGravityScale;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        normalGravityScale = Mathf.Abs(rb.gravityScale);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            if (gravityInverted)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -jumpForce);
+            }
+            else
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            }
+
             canJump = false;
         }
     }
@@ -30,14 +46,57 @@ public class PlayerMovementInferno : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
 
-        if (rb.linearVelocity.y < 0)
+        if (!gravityInverted)
         {
-            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+            // Esta parte es igual a tu salto original
+            if (rb.linearVelocity.y < 0)
+            {
+                rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+            }
+            else if (rb.linearVelocity.y > 0)
+            {
+                rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (riseMultiplier - 1) * Time.fixedDeltaTime;
+            }
         }
-        else if (rb.linearVelocity.y > 0)
+        else
         {
-            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (riseMultiplier - 1) * Time.fixedDeltaTime;
+            // Misma idea, pero al revés para caminar por el techo
+            if (rb.linearVelocity.y > 0)
+            {
+                rb.linearVelocity += Vector2.up * -Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+            }
+            else if (rb.linearVelocity.y < 0)
+            {
+                rb.linearVelocity += Vector2.up * -Physics2D.gravity.y * (riseMultiplier - 1) * Time.fixedDeltaTime;
+            }
         }
+    }
+
+    public void SetGravityInverted(bool inverted)
+    {
+        gravityInverted = inverted;
+
+        if (gravityInverted)
+        {
+            rb.gravityScale = -normalGravityScale;
+
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.flipY = true;
+            }
+        }
+        else
+        {
+            rb.gravityScale = normalGravityScale;
+
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.flipY = false;
+            }
+        }
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+        canJump = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
