@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c815aab46a3d6d14e82786d160a8436b
+guid: 83cfb0246f442f746bd702e4d77fb2d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -528204828700983729
-    second: descarga (2)_0
+      213: -3215715744424099693
+    second: despausa_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: descarga (2)_0
+      name: despausa_0
       rect:
         serializedVersion: 2
-        x: 61
-        y: 83
-        width: 410
-        height: 411
+        x: 355
+        y: 106
+        width: 267
+        height: 331
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f4eb1a0c1807ba8f0800000000000000
-      internalID: -528204828700983729
+      spriteID: 39088fa619b7f53d0800000000000000
+      internalID: -3215715744424099693
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      descarga (2)_0: -528204828700983729
+      despausa_0: -3215715744424099693
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
