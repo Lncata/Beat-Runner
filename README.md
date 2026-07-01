@@ -26,7 +26,7 @@ El proyecto es llevado a cabo por un equipo multidisciplinario que adopta metodo
 
 ---
 
-## 🛠️ Tecnologías y Características (Por definir)
+## 🛠️ Tecnologías y Características 
 * **Visuales:** Pixel art detallado con contrastes de luces neón y escenarios oscuros.
 * **Música:** Banda sonora dinámica cuyos *BPM* dictan el ritmo de los obstáculos y la velocidad del juego.
 * **Controles:** Mecánicas responsivas adaptadas para una sincronización milimétrica.
