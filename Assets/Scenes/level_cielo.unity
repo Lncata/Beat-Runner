@@ -3262,6 +3262,7 @@ GameObject:
   - component: {fileID: 492053896}
   - component: {fileID: 492053895}
   - component: {fileID: 492053899}
+  - component: {fileID: 492053900}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3432,6 +3433,36 @@ MonoBehaviour:
   jumpForce: 14
   fallMultiplier: 4
   riseMultiplier: 2.5
+--- !u!114 &492053900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492053893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e5f5fe354471c45b321dea15715527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerFormSwitcher
+  normalSprite: {fileID: 5748484370448124149, guid: d374f11be70d78a4e87ba4cf7383b439, type: 3}
+  catSprite: {fileID: -9003808351581127688, guid: beaaad7c58f4a60489eddd4a9c8198a0, type: 3}
+  normalAnimator: {fileID: 0}
+  catAnimator: {fileID: 0}
+  normalColliderSize: {x: 1.34, y: 3.76}
+  normalColliderOffset: {x: 0.02, y: -0.01}
+  catColliderSize: {x: 1.2, y: 0.8}
+  catColliderOffset: {x: 0, y: -0.2}
+  normalJumpForce: 14
+  catJumpForce: 10
+  normalFallMultiplier: 4.5
+  catFallMultiplier: 5.5
+  normalRiseMultiplier: 2.5
+  catRiseMultiplier: 2.2
+  catCameraSize: 4
+  normalScale: {x: 0.8461, y: 0.8829, z: 1}
+  catScale: {x: 0.5, y: 0.5, z: 1}
+  catPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!4 &502716328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4480090814057301939, guid: e22736cf889ce5c40882b45f8ec2d847, type: 3}

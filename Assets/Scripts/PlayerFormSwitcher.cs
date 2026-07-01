@@ -28,7 +28,10 @@ public class PlayerFormSwitcher : MonoBehaviour
     private CameraZoomController cameraZoom;
 
     public Vector3 normalScale = new Vector3(0.8461f, 0.8829f, 1f);
-    public Vector3 catScale = new Vector3(2.2f, 2.2f, 1f);  
+    public Vector3 catScale = new Vector3(2.2f, 2.2f, 1f);
+
+    [Tooltip("Ajuste de posición al transformarse en gato (Y positivo = sube, negativo = baja)")]
+    public Vector3 catPositionOffset = Vector3.zero;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -57,6 +60,7 @@ public class PlayerFormSwitcher : MonoBehaviour
         isCat = true;
 
         transform.localScale = catScale;
+        transform.position += catPositionOffset;
 
         if (cameraZoom != null)
         {
@@ -94,6 +98,7 @@ public class PlayerFormSwitcher : MonoBehaviour
         isCat = false;
 
         transform.localScale = normalScale;
+        transform.position -= catPositionOffset;
 
         if (cameraZoom != null)
         {
