@@ -108,7 +108,14 @@ public class PlayerMovementInferno : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.RegisterObstacleHit();
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 }

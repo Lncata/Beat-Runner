@@ -9,31 +9,18 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public static class GameBootstrapper
 {
-    const string TargetScene = "level_Earth_01";  // ← nombre EXACTO de tu escena
+    static bool IsValidScene(string sceneName)
+    {
+        return sceneName == "level_Earth_01" || sceneName == "level_inferno" || sceneName == "level_cielo";
+    }
 
     static bool subscribed;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    static void Init()
-    {
-        if (!subscribed)
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-            subscribed = true;
-        }
-        TrySetup(SceneManager.GetActiveScene());
-    }
-
-    static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        TrySetup(scene);
-    }
-
     static void TrySetup(Scene scene)
     {
-        if (scene.name != TargetScene)
+        if (!IsValidScene(scene.name))
         {
-            return;
+            return; // No es un nivel jugable.
         }
         if (GameManager.Instance != null)
         {
@@ -48,6 +35,17 @@ public static class GameBootstrapper
         var hud = root.AddComponent<HUDController>();
         var results = root.AddComponent<ResultsScreen>();
         var game = root.AddComponent<GameManager>();
+
+        // Configurar canción dependiendo de la escena
+        if (scene.name == "level_inferno")
+        {
+            music.resourcePath = "Music/CFC MADROCK"; // Nombre del archivo SIN el .mp3
+            music.bpm = 150f; // Pon aquí el BPM real de la canción de rock
+        }
+        else if (scene.name == "level_Earth_01")
+        {
+            music.resourcePath = "Music/level_tierra";
+        }
 
         score.Initialize(scene.name);
         music.Initialize();
