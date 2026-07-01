@@ -21,8 +21,15 @@ public class PlayerMovementInferno : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         normalGravityScale = Mathf.Abs(rb.gravityScale);
+
+        // Friction cero evita que el player se pegue en las esquinas de plataformas
+        var col = GetComponent<Collider2D>();
+        if (col != null)
+        {
+            var mat = new PhysicsMaterial2D("PlayerNoFriction") { friction = 0f, bounciness = 0f };
+            col.sharedMaterial = mat;
+        }
     }
 
     void Update()
@@ -103,11 +110,25 @@ public class PlayerMovementInferno : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            canJump = true;
+            // Solo permite saltar si el contacto viene desde abajo (pisando), no desde los lados
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                float dot = gravityInverted ? -contact.normal.y : contact.normal.y;
+                if (dot > 0.5f)
+                {
+                    canJump = true;
+                    break;
+                }
+            }
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            // Si la ruleta dio vida extra, absorbe el golpe y no hace nada
+            if (CieloBuffManager.Instance != null && CieloBuffManager.Instance.ConsumeExtraLife())
+                return;
+
+            CieloScoreManager.RegisterDeath();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
