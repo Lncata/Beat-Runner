@@ -40,9 +40,24 @@ public class PlayerMovementInferno : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        // Cambiamos GetKeyDown por GetKey para permitir saltos continuos al mantener espacio
+        if (Input.GetKey(KeyCode.Space) && canJump)
         {
+<<<<<<< HEAD
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, gravityInverted ? -jumpForce : jumpForce);
+=======
+            if (gravityInverted)
+            {
+                // Si la gravedad está invertida, saltamos "hacia abajo"
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -jumpForce);
+            }
+            else
+            {
+                // Salto normal hacia arriba
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            }
+
+>>>>>>> main
             canJump = false;
         }
 
@@ -129,12 +144,23 @@ public class PlayerMovementInferno : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+<<<<<<< HEAD
             // Si la ruleta dio vida extra, absorbe el golpe y no hace nada
             if (CieloBuffManager.Instance != null && CieloBuffManager.Instance.ConsumeExtraLife())
                 return;
 
             CieloScoreManager.RegisterDeath();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+=======
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.RegisterObstacleHit();
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+>>>>>>> main
         }
     }
 }
