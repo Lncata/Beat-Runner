@@ -27,14 +27,17 @@ public class PlayerMovementInferno : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        // Cambiamos GetKeyDown por GetKey para permitir saltos continuos al mantener espacio
+        if (Input.GetKey(KeyCode.Space) && canJump)
         {
             if (gravityInverted)
             {
+                // Si la gravedad está invertida, saltamos "hacia abajo"
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, -jumpForce);
             }
             else
             {
+                // Salto normal hacia arriba
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             }
 
