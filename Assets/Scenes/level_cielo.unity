@@ -3349,7 +3349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9072907d8361494aa7aabd326d6721d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementInferno
-  speed: 5
+  speed: 6.3
   jumpForce: 14
   fallMultiplier: 4
   riseMultiplier: 2.5

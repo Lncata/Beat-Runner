@@ -6245,7 +6245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b138790fccd6844a7d220a913440ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementEarth
-  speed: 6
+  speed: 6.5
   jumpForce: 14
   fallMultiplier: 4
   riseMultiplier: 2.5
@@ -12424,6 +12424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1042933068}
+  - component: {fileID: 1042933069}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -12447,6 +12448,25 @@ Transform:
   - {fileID: 1486183671}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1042933069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042933067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77d4e6b4bedb4805ad2f3743ed71d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BeatPulse
+  music: {fileID: 1486183673}
+  bpm: 174
+  offsetBeat: 0
+  objetivos:
+  - {fileID: 1872347721}
+  escalaPulso: 1.15
+  velocidadDecaimiento: 8
 --- !u!1 &1047870413
 GameObject:
   m_ObjectHideFlags: 0
