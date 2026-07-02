@@ -49,7 +49,14 @@ public class RuletaManager : MonoBehaviour
 
     void Start()
     {
-        // Pausar música y tiempo hasta que el jugador cierre la ruleta
+        if (musicSource == null)
+        {
+            var mm = GameObject.Find("musicManager");
+            if (mm != null) musicSource = mm.GetComponent<AudioSource>();
+            if (musicSource == null)
+                musicSource = FindFirstObjectByType<AudioSource>();
+        }
+
         if (musicSource != null) musicSource.Pause();
         Time.timeScale = 0f;
 

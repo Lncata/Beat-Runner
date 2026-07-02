@@ -42,15 +42,17 @@ public class PlayerFormSwitcher : MonoBehaviour
 
     void Awake()
     {
-    spriteRenderer = GetComponent<SpriteRenderer>();
-    animator = GetComponent<Animator>();
-    boxCollider = GetComponent<BoxCollider2D>();
-    movement = GetComponent<PlayerMovementInferno>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        movement = GetComponent<PlayerMovementInferno>();
 
-    if (Camera.main != null)
-    {
-        cameraZoom = Camera.main.GetComponent<CameraZoomController>();
-    }
+        if (Camera.main != null)
+            cameraZoom = Camera.main.GetComponent<CameraZoomController>();
+
+        // Guarda el animator original para poder volver a él
+        if (normalAnimator == null && animator != null)
+            normalAnimator = animator.runtimeAnimatorController;
     }
 
     public void TransformToCat()
@@ -67,15 +69,22 @@ public class PlayerFormSwitcher : MonoBehaviour
             cameraZoom.SetZoom(catCameraSize);
         }
 
+        if (animator != null && animator.parameters.Length > 0)
+        {
+            foreach (var p in animator.parameters)
+            {
+                if (p.name == "IsCat" && p.type == AnimatorControllerParameterType.Bool)
+                {
+                    animator.SetBool("IsCat", true);
+                    goto skipSpriteSwap;
+                }
+            }
+        }
         if (spriteRenderer != null && catSprite != null)
-        {
             spriteRenderer.sprite = catSprite;
-        }
-
         if (animator != null && catAnimator != null)
-        {
             animator.runtimeAnimatorController = catAnimator;
-        }
+        skipSpriteSwap:;
 
         if (boxCollider != null)
         {
@@ -105,15 +114,22 @@ public class PlayerFormSwitcher : MonoBehaviour
             cameraZoom.ResetZoom();
         }
 
+        if (animator != null)
+        {
+            foreach (var p in animator.parameters)
+            {
+                if (p.name == "IsCat" && p.type == AnimatorControllerParameterType.Bool)
+                {
+                    animator.SetBool("IsCat", false);
+                    goto skipSpriteSwap;
+                }
+            }
+        }
         if (spriteRenderer != null && normalSprite != null)
-        {
             spriteRenderer.sprite = normalSprite;
-        }
-
         if (animator != null && normalAnimator != null)
-        {
             animator.runtimeAnimatorController = normalAnimator;
-        }
+        skipSpriteSwap:;
 
         if (boxCollider != null)
         {
