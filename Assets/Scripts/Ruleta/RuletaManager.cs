@@ -25,8 +25,14 @@ public class RuletaManager : MonoBehaviour
     [SerializeField] Button spinButton;
     [SerializeField] Button continueButton;
 
-    [Header("Texto que muestra el resultado")]
+    [Header("Texto que muestra el resultado (opcional si usas imágenes)")]
     [SerializeField] TMP_Text resultText;
+
+    [Header("Imágenes de resultado — arrastrá una por premio (opcional)")]
+    [SerializeField] UnityEngine.UI.Image resultImage;
+    [SerializeField] Sprite spriteVidaExtra;
+    [SerializeField] Sprite spriteScoreX2;
+    [SerializeField] Sprite spriteModoGato;
 
     [Header("AudioSource del musicManager (para pausar/reanudar)")]
     [SerializeField] AudioSource musicSource;
@@ -48,7 +54,8 @@ public class RuletaManager : MonoBehaviour
         Time.timeScale = 0f;
 
         ruletaPanel.SetActive(true);
-        resultText.text = "";
+        if (resultText != null) resultText.text = "";
+        if (resultImage != null) resultImage.gameObject.SetActive(false);
         continueButton.gameObject.SetActive(false);
 
         spinButton.onClick.AddListener(OnSpinClicked);
@@ -92,7 +99,32 @@ public class RuletaManager : MonoBehaviour
             "¡MODO GATO! Te transformas en gato."
         };
 
-        resultText.text = mensajes[(int)reward];
+        Color[] colores =
+        {
+            new Color(1f, 0.3f, 0.4f),   // rosa  → Vida Extra
+            new Color(1f, 0.85f, 0.1f),  // dorado → Score x2
+            new Color(0.6f, 0.3f, 1f),   // morado → Gato
+        };
+
+        // Texto con color
+        if (resultText != null)
+        {
+            resultText.text  = mensajes[(int)reward];
+            resultText.color = colores[(int)reward];
+        }
+
+        // Imagen según premio (si está asignada)
+        if (resultImage != null)
+        {
+            Sprite[] sprites = { spriteVidaExtra, spriteScoreX2, spriteModoGato };
+            Sprite   sp      = sprites[(int)reward];
+            if (sp != null)
+            {
+                resultImage.sprite  = sp;
+                resultImage.gameObject.SetActive(true);
+            }
+        }
+
         continueButton.gameObject.SetActive(true);
 
         CieloBuffManager.Instance?.ApplyReward(reward);

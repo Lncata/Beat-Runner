@@ -11,16 +11,22 @@ public class PlayerMovementInferno : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     private bool canJump = true;
     private bool gravityInverted = false;
 
     private float normalGravityScale;
 
+    // Nombres de los parámetros del Animator Controller
+    static readonly int ParamIsGrounded = Animator.StringToHash("IsGrounded");
+    static readonly int ParamVelocityY  = Animator.StringToHash("VelocityY");
+
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb            = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator      = GetComponent<Animator>();
         normalGravityScale = Mathf.Abs(rb.gravityScale);
 
         // Friction cero evita que el player se pegue en las esquinas de plataformas
@@ -36,16 +42,15 @@ public class PlayerMovementInferno : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
-            if (gravityInverted)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -jumpForce);
-            }
-            else
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            }
-
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, gravityInverted ? -jumpForce : jumpForce);
             canJump = false;
+        }
+
+        // Actualizar Animator
+        if (animator != null)
+        {
+            animator.SetBool(ParamIsGrounded, canJump);
+            animator.SetFloat(ParamVelocityY, rb.linearVelocity.y);
         }
     }
 
