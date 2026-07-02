@@ -83,4 +83,17 @@ public void AbrirSeleccionDeNiveles()
 
     Debug.Log("Progreso reiniciado");
 }
+
+    public void UnlockAllLevels()
+    {
+        // Establecemos el progreso en 3 para habilitar Cielo, Tierra e Infierno
+        PlayerPrefs.SetInt("NivelDesbloqueado", 3);
+        PlayerPrefs.Save();
+
+        // Actualizamos la UI inmediatamente (quitar candados y habilitar botones)
+        ActualizarNiveles();
+
+        Debug.Log("¡Todos los niveles desbloqueados!");
+    }
+
 }
