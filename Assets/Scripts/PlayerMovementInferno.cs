@@ -18,7 +18,6 @@ public class PlayerMovementInferno : MonoBehaviour
 
     private float normalGravityScale;
 
-    // Nombres de los parámetros del Animator Controller
     static readonly int ParamIsGrounded = Animator.StringToHash("IsGrounded");
     static readonly int ParamVelocityY  = Animator.StringToHash("VelocityY");
 
@@ -29,7 +28,6 @@ public class PlayerMovementInferno : MonoBehaviour
         animator      = GetComponent<Animator>();
         normalGravityScale = Mathf.Abs(rb.gravityScale);
 
-        // Friction cero evita que el player se pegue en las esquinas de plataformas
         var col = GetComponent<Collider2D>();
         if (col != null)
         {
@@ -40,28 +38,12 @@ public class PlayerMovementInferno : MonoBehaviour
 
     void Update()
     {
-        // Cambiamos GetKeyDown por GetKey para permitir saltos continuos al mantener espacio
-        if (Input.GetKey(KeyCode.Space) && canJump)
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
-<<<<<<< HEAD
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, gravityInverted ? -jumpForce : jumpForce);
-=======
-            if (gravityInverted)
-            {
-                // Si la gravedad está invertida, saltamos "hacia abajo"
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -jumpForce);
-            }
-            else
-            {
-                // Salto normal hacia arriba
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            }
-
->>>>>>> main
             canJump = false;
         }
 
-        // Actualizar Animator
         if (animator != null)
         {
             animator.SetBool(ParamIsGrounded, canJump);
@@ -75,27 +57,17 @@ public class PlayerMovementInferno : MonoBehaviour
 
         if (!gravityInverted)
         {
-            // Esta parte es igual a tu salto original
             if (rb.linearVelocity.y < 0)
-            {
                 rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-            }
             else if (rb.linearVelocity.y > 0)
-            {
                 rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (riseMultiplier - 1) * Time.fixedDeltaTime;
-            }
         }
         else
         {
-            // Misma idea, pero al revés para caminar por el techo
             if (rb.linearVelocity.y > 0)
-            {
                 rb.linearVelocity += Vector2.up * -Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-            }
             else if (rb.linearVelocity.y < 0)
-            {
                 rb.linearVelocity += Vector2.up * -Physics2D.gravity.y * (riseMultiplier - 1) * Time.fixedDeltaTime;
-            }
         }
     }
 
@@ -106,20 +78,12 @@ public class PlayerMovementInferno : MonoBehaviour
         if (gravityInverted)
         {
             rb.gravityScale = -normalGravityScale;
-
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.flipY = true;
-            }
+            if (spriteRenderer != null) spriteRenderer.flipY = true;
         }
         else
         {
             rb.gravityScale = normalGravityScale;
-
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.flipY = false;
-            }
+            if (spriteRenderer != null) spriteRenderer.flipY = false;
         }
 
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
@@ -130,37 +94,20 @@ public class PlayerMovementInferno : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            // Solo permite saltar si el contacto viene desde abajo (pisando), no desde los lados
             foreach (ContactPoint2D contact in collision.contacts)
             {
                 float dot = gravityInverted ? -contact.normal.y : contact.normal.y;
-                if (dot > 0.5f)
-                {
-                    canJump = true;
-                    break;
-                }
+                if (dot > 0.5f) { canJump = true; break; }
             }
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-<<<<<<< HEAD
-            // Si la ruleta dio vida extra, absorbe el golpe y no hace nada
             if (CieloBuffManager.Instance != null && CieloBuffManager.Instance.ConsumeExtraLife())
                 return;
 
             CieloScoreManager.RegisterDeath();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-=======
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.RegisterObstacleHit();
-            }
-            else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
->>>>>>> main
         }
     }
 }
